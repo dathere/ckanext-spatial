@@ -76,6 +76,7 @@ this.ckan.module('spatial-query', function ($, _) {
                   <select placeholder="Click here to select a category" id="public-search-categories" class="js-choice-category"></select>
                 </div>
                 <button id="clear-categories-button" class="d-none btn btn-danger" style="align-self: center; margin-top: 2rem;">Clear category</button>
+                <button id="clear-bbox-button" class="d-none btn btn-danger" style="align-self: center; margin-top: 2rem;">Clear bounding box</button>
                 <div id="choices-div" class="d-none" style="max-width: 55%;">
                   <label for="public-search-choices">Select features to view on the map</label>
                   <select multiple placeholder="Click here to select a feature" id="public-search-choices" class="js-choice"></select>
@@ -195,6 +196,13 @@ this.ckan.module('spatial-query', function ($, _) {
           }
           var container = element.find('#draw-map-container')[0];
           module.drawMap = map = module._createMap(container);
+          module.clearBboxButton = document.getElementById("clear-bbox-button");
+          module.clearBboxButton.onclick = (e) => {
+            if (module.extentLayer) {
+              module._onCancel();
+              module.clearBboxButton.classList.add("d-none");
+            }
+          };
           // Set up named place category selector
           const categoriesElement = document.querySelector(".js-choice-category");
           const categories = new Choices(categoriesElement, {
@@ -394,6 +402,8 @@ this.ckan.module('spatial-query', function ($, _) {
             module.extentLayer = extentLayer = e.layer;
             module.ext_bbox_input.val(extentLayer.getBounds().toBBoxString());
             map.addLayer(extentLayer);
+            // Show clear bounding box button
+            module.clearBboxButton.classList.remove("d-none");
             element.find('.btn-primary').removeClass('disabled').addClass('btn-primary');
           });
 
