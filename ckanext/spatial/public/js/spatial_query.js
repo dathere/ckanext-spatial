@@ -119,7 +119,7 @@ this.ckan.module('spatial-query', function ($, _) {
       const nominatimEndpoint = `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${search_query}&format=jsonv2&limit=10`;
       fetch(nominatimEndpoint, {
         headers: {
-          "User-Agent": "Texas Water Development Hub"
+          "User-Agent": "ckanext-gztr extension user"
         },
         signal: AbortSignal.timeout(5000)
       }).then((res) => res.json().then((data) => {
