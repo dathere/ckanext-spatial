@@ -33,6 +33,7 @@ spatial_query_js:
     - gazetteer/js/topojson-simplify.js
     - js/named-places-data.js
     - js/choices.min.js
+    - js/geoman.js
     - js/easy-button.js
     - js/common_map.js
     - js/spatial_query.js
