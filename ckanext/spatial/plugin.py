@@ -182,6 +182,8 @@ class SpatialQuery(p.SingletonPlugin):
         # spatial field is geojson coordinate data, not needed in SOLR either
         pkg_dict.pop('spatial', None)
         pkg_dict.pop('extras_spatial', None)
+        pkg_dict.pop('spatial_full', None)
+        pkg_dict.pop('extras_spatial_full', None)
 
         return pkg_dict
 
